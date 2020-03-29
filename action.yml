@@ -1,0 +1,29 @@
+# action.yml
+name: 'Video Converter Action'
+description: 'Convert videos in the folder to the given format'
+branding:
+  icon: 'video'
+  color: 'green'
+inputs:
+  videos-folder:
+    description: 'Folder in which original videos are stored'
+    required: true
+    default: 'videos'
+  new-format:
+    description: 'New format for videos'
+    required: true
+    default: 'mp4'
+  output-folder:
+    description: 'Folder in which converted videos are stored'
+    required: true
+    default: 'output'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.videos-folder }}
+    - ${{ inputs.new-format }}
+    - ${{ inputs.output-folder }}
